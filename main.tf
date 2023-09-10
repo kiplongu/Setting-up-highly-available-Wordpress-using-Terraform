@@ -21,7 +21,13 @@ resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
 
+  user_data = <<EOF
+#!/bin/bash
+sudo apt-get update
+sudo apt-get install nginx -y
+sudo service nginx start
+EOF
   tags = {
-    Name = "HelloWorld"
+    Name = "Nginx-Webserver"
   }
 }
