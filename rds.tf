@@ -4,7 +4,7 @@ resource "aws_db_instance" "wordpress" {
   engine                 = "mysql"
   engine_version         = "5.7"
   instance_class         = "db.t2.micro"
-  name                   = var.db_name
+  db_name                = var.db_name
   username               = var.db_user
   password               = jsondecode(data.aws_secretsmanager_secret_version.example.secret_string)["password"] #var.db_pass
   parameter_group_name   = "default.mysql5.7"
